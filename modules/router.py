@@ -5,7 +5,7 @@ from adalineGD import AdalineGD
 
 modules_router = APIRouter()
 
-adaline_gd = AdalineGD(n_iter=200)
+adaline_gd = AdalineGD(n_iter=2000)
 
 
 @modules_router.post(
