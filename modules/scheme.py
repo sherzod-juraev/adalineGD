@@ -48,3 +48,28 @@ class AdalineGDIn(BaseModel):
                 status_code=status.HTTP_422_UNPROCESSABLE_CONTENT,
                 detail='The sample and target values are not the same size.'
             )
+        return self
+
+
+class AdalineGDOut(BaseModel):
+
+    fit: bool
+    w_: list
+
+
+class AdalineGDPredict(BaseModel):
+    model_config = {
+        'extra': 'forbid'
+    }
+
+    X: list[float]
+
+    @field_validator('X')
+    def verify_X(cls, X):
+        X = array(X)
+        if X.ndim != 1:
+            raise HTTPException(
+                status_code=status.HTTP_422_UNPROCESSABLE_CONTENT,
+                detail='X must be a vector'
+            )
+        return X
