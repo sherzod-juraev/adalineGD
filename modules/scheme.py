@@ -70,6 +70,6 @@ class AdalineGDPredict(BaseModel):
         if X.ndim != 2:
             raise HTTPException(
                 status_code=status.HTTP_422_UNPROCESSABLE_CONTENT,
-                detail='X must be a vector'
+                detail='X must be a 2D matrix'
             )
         return X
