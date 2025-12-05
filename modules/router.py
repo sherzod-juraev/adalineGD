@@ -5,7 +5,7 @@ from adalineGD import AdalineGD
 
 modules_router = APIRouter()
 
-adaline_gd = AdalineGD(n_iter=2000)
+adaline_gd = AdalineGD(n_iter=10000)
 
 
 @modules_router.post(
@@ -28,9 +28,9 @@ async def model_fit(
     '/predict',
     summary='AdalineGD predict',
     status_code=status.HTTP_200_OK,
-    response_model=int
+    response_model=list[int]
 )
 async def model_predict(
         adalineGD_scheme: AdalineGDPredict
-) -> int:
+) -> list[int]:
     return adaline_gd.predict(adalineGD_scheme.X)

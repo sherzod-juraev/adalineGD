@@ -62,12 +62,12 @@ class AdalineGDPredict(BaseModel):
         'extra': 'forbid'
     }
 
-    X: list[float]
+    X: list[list]
 
     @field_validator('X')
     def verify_X(cls, X):
         X = array(X)
-        if X.ndim != 1:
+        if X.ndim != 2:
             raise HTTPException(
                 status_code=status.HTTP_422_UNPROCESSABLE_CONTENT,
                 detail='X must be a vector'
